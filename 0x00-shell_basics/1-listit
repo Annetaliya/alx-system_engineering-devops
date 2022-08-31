@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -la 
+echo -e "0-current_working directory \n1-listit \nREADME.md"   
