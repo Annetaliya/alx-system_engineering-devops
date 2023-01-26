@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#print best school 10 times and hi at the 11th position
+i=0
+while (("$i" < 10))
+do
+	if [ "$i" == 9 ]
+	then
+		echo "Hi"
+	fi
+	echo "Best School"
+	((i++))
+done
