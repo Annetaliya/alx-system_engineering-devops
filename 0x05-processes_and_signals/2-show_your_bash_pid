@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#display bash files only
+ps -ufx | grep bash
