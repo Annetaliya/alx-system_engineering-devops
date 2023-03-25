@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#script that configures private key
+
+Host 52.87.232.99
+ IdentityFile ~/.ssh/school
+ PreferredAuthentications publickey
+ PasswordAuthentication no
