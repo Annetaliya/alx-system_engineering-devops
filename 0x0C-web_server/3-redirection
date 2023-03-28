@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#Configure your Nginx server so that /redirect_me is redirecting to another page
+
+sudo apt-get update
+sudo apt-get -y install nginx
+
+#create a default web page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+#set up 301 redirection
+ADD301_REDIRECT="
+	location /redirect_me {
+	  return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+"
+
+#Add the 301 redirection to the end of the default nginx configuration
+sudo bash -c "echo '$ADD301_REDIRECT' >> /etc/nginx/sites-available/default"
+
+#restart
+sudo service nginx restart
