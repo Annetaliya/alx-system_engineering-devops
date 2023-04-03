@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#A script that installs a nginx web server
+#edits the configuration of the http header to X-Served-By
+#The value of the custom HTTP header must be the hostname of the server Nginx is running on
+
+sudo apt-get update
+sudo apt-get install nginx -y
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+#redirection of the website
+sudo sed -i '/server_name _;/a \	location /redirect_me {\n		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n	}' /etc/nginx/sites-available/default
+
+#custom 404 page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+
+#configuring nginx to use custom 404 page
+sudo sed -i '/server_name _;/a \        error_page 404 /custom_404.html;\n        location = /custom_404.html {\n                internal;\n        }' /etc/nginx/sites-available/default
+
+HOSTNAME=$(hostname)
+
+#configuration of the http header
+sudo sed -i "/^http {/a \    add_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
+
+sudo service nginx restart
