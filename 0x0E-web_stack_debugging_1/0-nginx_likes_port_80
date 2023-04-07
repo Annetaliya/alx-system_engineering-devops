@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #debugging nginx not listening in port80
 #create a symbolic link btn the two file
-sudo ln -sf etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-sudo service nginx restart
+
+rm /etc/nginx/sites-enabled/default
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx start
