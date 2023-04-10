@@ -35,6 +35,8 @@ defaults
 frontend http-in
         bind *:80
         bind *:443 ssl crt /etc/letsencrypt/live/www.annetaliya.tech/all.pem
+	http-request set-header X-Forwarded-Proto https
+	http-request redirect scheme https code 301 unless { ssl_fc }
         default_backend annette_servers
 
 
