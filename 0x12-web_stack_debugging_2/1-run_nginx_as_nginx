@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 #configuring nginx to run as root and listen on port 8080
 
