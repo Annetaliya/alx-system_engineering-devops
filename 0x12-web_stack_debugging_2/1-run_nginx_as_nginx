@@ -1,0 +1,18 @@
+
+#!/usr/bin/env bash
+#configuring nginx to run as root and listen on port 8080
+
+sudo service nginx stop
+sudo pkill apache2
+
+#change the conf file to run nginx as user
+sudo sed -i 's/#user www-data;/user nginx;/' /etc/nginx/nginx.conf
+
+#change the configuration to listen on port 8080
+sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' /etc/nginx/sites-available/default
+sudo sed -i 's/listen \[::\]:80/listen \[::\]:8080/' /etc/nginx/sites-available/default
+
+#test nginx configuration for errors
+sudo nginx -t
+
+sudo service nginx start
