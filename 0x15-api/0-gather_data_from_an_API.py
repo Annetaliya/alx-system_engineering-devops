@@ -7,7 +7,7 @@ import sys
 
 if __name__ == '__main__':
     user_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/users" + user_id
+    url = "https://jsonplaceholder.typicode.com/users/" + user_id
     json_dict = requests.get(url).json()
     name_of = json_dict.get("name")
     user_task = requests.get("https://jsonplaceholder.typicode.com/todos")
