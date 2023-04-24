@@ -16,6 +16,6 @@ if __name__ == '__main__':
 
     with open(file_name, 'w') as csvfile:
         for items in user_task:
-            csvfile.write('"{},"{}","{}","{}"\n'.format(items.get(
+            csvfile.write('"{}","{}","{}","{}"\n'.format(items.get(
                 "userId"), name_of, items.get("completed"),
                 items.get("title")))
